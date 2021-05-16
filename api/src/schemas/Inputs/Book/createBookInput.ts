@@ -5,16 +5,16 @@ import { Author } from "../../Author";
 
 @InputType()
 export class CreateBookInput {
-    @Field(() => String,{ nullable: false })
-    firstName!: string
+  @Field(() => String!)
+  firstName!: string;
 
-    @Field(() => String, { nullable: false })
-    lastName!: string
+  @Field(() => String!)
+  lastName!: string;
 
-    @Field(() => String, { nullable: false })
-    @Length(30, 255)
-    description!: string
+  @Field(() => String!)
+  @Length(30, 255)
+  description!: string;
 
-    @Field(() => [Author], { nullable: false })
-    authors!: Author[]
+  @Field(() => [Author!], { nullable: false })
+  authors!: Author[];
 }

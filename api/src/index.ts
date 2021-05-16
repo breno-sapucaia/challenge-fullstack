@@ -1,7 +1,15 @@
+import express from "express";
 import "reflect-metadata";
-import initServer from "./config/initServer";
-import resolvers from "./graphql/resolvers";
-import typeDefs from "./graphql/schema";
+import { useGraphQL } from "./apollo";
 
+const app = express();
+const port = process.env.PORT || 3333;
 
-initServer(typeDefs, resolvers);
+const init = async () => {
+  await useGraphQL(app);
+  app.listen(port, () =>
+    console.log(`🔥 Server is running on http://localhost:${port}/graphql`)
+  );
+};
+
+init();
