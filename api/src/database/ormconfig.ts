@@ -9,10 +9,10 @@ const mongoConfig: ConnectionOptions = {
   username: "admin",
   password: "admin",
   database: "books-database",
-  entities: [path.join(__dirname, "..", "..", "schemas", "*.{ts,js}")],
+  entities: [path.join(__dirname, "..", "schemas", "*.{ts,js}")],
   migrations: [path.join(__dirname, "migrations", "**", "*.{ts,js}")],
   cli: {
-    entitiesDir: path.join(__dirname, "..", "..", "schemas"),
+    entitiesDir: path.join(__dirname, "..", "schemas"),
     migrationsDir: path.join(__dirname, "migrations"),
   },
 };
