@@ -13,11 +13,13 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node-dev src/index.ts",
-    "start": "pm2 start ecosystem.config.js"
+    "dev": "ts-node-dev --no-warnings src/index.ts ",
+    "start": "pm2 start ecosystem.config.js",
+    "typeorm": "ts-node ./node_modules/typeorm/cli"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
+    "@types/mongodb": "^3.6.12",
     "@types/node": "^15.3.0",
     "ts-node-dev": "^1.1.6",
     "tsc": "^2.0.3",
@@ -30,7 +32,6 @@
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.5",
     "mongodb": "^3.6.6",
-    "mongoose": "^5.12.9",
     "pm2": "^4.5.6",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1",

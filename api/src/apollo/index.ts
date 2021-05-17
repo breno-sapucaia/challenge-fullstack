@@ -2,12 +2,11 @@ import { ApolloServer } from "apollo-server-express";
 import { Express } from "express";
 import { buildSchema } from "type-graphql";
 import Container from "typedi";
-import { createConnectionUsing, EnumConnections } from "../database/connection";
+import { initializeMongoDB } from "../database/connection";
 import { BookResolver } from "../resolvers/bookResolver";
 
 export const useGraphQL = async (app: Express) => {
-  await createConnectionUsing(EnumConnections.MongoDB);
-
+  await initializeMongoDB();
   const schema = await buildSchema({
     resolvers: [BookResolver],
     container: Container,
@@ -19,4 +18,5 @@ export const useGraphQL = async (app: Express) => {
   });
 
   server.applyMiddleware({ app });
+  return app;
 };

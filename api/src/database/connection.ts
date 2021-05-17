@@ -1,21 +1,13 @@
 import { createConnection } from "typeorm";
-import mongoConnectionConfig from "./ormconfig";
+import connectionOptions from "./ormconfig";
 
-export enum EnumConnections {
-  MongoDB,
-}
-export const createConnectionUsing = async (
-  name: EnumConnections
-): Promise<void> => {
+export const initializeMongoDB = async (): Promise<void> => {
   try {
-    if (name === EnumConnections.MongoDB) {
-      await createConnection(mongoConnectionConfig);
-    }
+    await createConnection(connectionOptions);
     console.log(
-      `📣✅ Connection using config: ${name.toString()} was created successfully`
+      `📣  ✅ Connection using config: MongoDB was created successfully`
     );
   } catch (error) {
-    console.log(`📣🛑 Can't create connection using: ${name.toString()}.`);
-    console.log(`      Errors: ${error}`);
+    console.log(`Database failed to connect ${error.message}`);
   }
 };

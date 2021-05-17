@@ -1,6 +1,5 @@
-import { ObjectId } from "mongodb";
 import { Service } from "typedi";
-import { getMongoRepository, MongoRepository } from "typeorm";
+import { getMongoRepository, MongoRepository, ObjectID } from "typeorm";
 import { Book } from "../schemas/Book";
 import { CreateBookInput } from "../schemas/Inputs/Book/createBookInput";
 import { UpdateBookInput } from "../schemas/Inputs/Book/updateBookInputs";
@@ -10,15 +9,11 @@ export default class BookService {
   private bookRepository!: MongoRepository<Book>;
 
   constructor() {
-    this.bookRepository = getMongoRepository(Book);
+    this.bookRepository = getMongoRepository(Book, "mongodb");
   }
 
   findById = async (_id: string): Promise<Book> => {
-    const book = await this.bookRepository.findOne({
-      where: {
-        _id,
-      },
-    });
+    const book = await this.bookRepository.findOne({ _id: new ObjectID(_id) });
     if (!book) throw new Error(`The Book with id: ${_id} doesn't exists! 😢`);
     return book;
   };
@@ -47,7 +42,7 @@ export default class BookService {
   delete = async (_id: string): Promise<boolean> => {
     const persistedBook = await this.findById(_id);
     const result = await this.bookRepository.deleteOne({
-      _id: new ObjectId(persistedBook._id),
+      _id: persistedBook._id,
     });
     return !!result;
   };

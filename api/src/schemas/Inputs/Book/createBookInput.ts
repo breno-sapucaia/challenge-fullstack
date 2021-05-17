@@ -1,20 +1,18 @@
 import { Length } from "class-validator";
-import "reflect-metadata";
 import { Field, InputType } from "type-graphql";
 import { Author } from "../../Author";
+import { Book } from "../../Book";
+import { CreateAuthorInput } from "../Author/createAuthorInput";
 
-@InputType()
-export class CreateBookInput {
+@InputType({ description: "Use this input to create a new book" })
+export class CreateBookInput implements Partial<Book> {
   @Field(() => String!)
-  firstName!: string;
-
-  @Field(() => String!)
-  lastName!: string;
+  name!: string;
 
   @Field(() => String!)
   @Length(30, 255)
   description!: string;
 
-  @Field(() => [Author!], { nullable: false })
+  @Field(() => [CreateAuthorInput], { nullable: false })
   authors!: Author[];
 }

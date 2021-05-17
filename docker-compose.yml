@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  db:
+    image: mongo
+    container_name: book-nosql
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=foton
+      - MONGO_INITDB_ROOT_PASSWORD=mecontrata
+    volumes:
+      - ./mongodb/data/db:/data/db
+    ports:
+      - 127.0.0.1:9999:27017
+    restart: unless-stopped

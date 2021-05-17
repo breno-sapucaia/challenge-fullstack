@@ -1,25 +1,23 @@
-import "reflect-metadata";
 import { Field, ObjectType } from "type-graphql";
 import { Column, Entity } from "typeorm";
 import { Author } from "./Author";
 import { BaseSchema } from "./BaseSchema";
 
 @Entity()
-@ObjectType()
+@ObjectType({ implements: BaseSchema })
 export class Book extends BaseSchema {
+  @Field(() => String)
+  @Column({ nullable: false })
+  name!: string;
 
-    @Field(() => String)
-    @Column({nullable: false})
-    name!: string;
+  @Field(() => [Author], { nullable: true })
+  @Column((type) => Author)
+  authors!: Author[];
 
-    @Field(() => [Author!]!)
-    @Column(type => Author)
-    authors!: Author[]
-    
-    @Field(() => String)
-    @Column({
-        length: 255,
-        nullable:false
-    })
-    description!: string
+  @Field(() => String)
+  @Column({
+    length: 255,
+    nullable: false,
+  })
+  description!: string;
 }
