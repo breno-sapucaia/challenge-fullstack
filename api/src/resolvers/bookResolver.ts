@@ -10,6 +10,11 @@ import BookService from "../services/serviceBooks";
 class BookResolver {
   constructor(private readonly bookService: BookService) {}
 
+  @Query((returns) => [Book!])
+  async getByName(@Arg("name") name: string): Promise<Book[]> {
+    return await this.bookService.findByName(name);
+  }
+
   @Query((returns) => [Book!], { nullable: true })
   async getBooks(): Promise<Book[]> {
     return await this.bookService.findAll();
@@ -38,8 +43,8 @@ class BookResolver {
   }
 
   @Mutation((returns) => Boolean)
-  async deleteBook(@Arg("id") id: string): Promise<boolean> {
-    return await this.bookService.delete(id);
+  async deleteBook(@Arg("_id") _id: string): Promise<boolean> {
+    return await this.bookService.delete(_id);
   }
 }
 export { BookResolver };

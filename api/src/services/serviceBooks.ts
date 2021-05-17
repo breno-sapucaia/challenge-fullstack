@@ -1,19 +1,23 @@
+import { ObjectId } from "mongodb";
 import { Service } from "typedi";
-import { getMongoRepository, MongoRepository, ObjectID } from "typeorm";
+import { getCustomRepository } from "typeorm";
+import { BookRepository } from "../repositories/bookRepository";
 import { Book } from "../schemas/Book";
 import { CreateBookInput } from "../schemas/Inputs/Book/createBookInput";
 import { UpdateBookInput } from "../schemas/Inputs/Book/updateBookInputs";
 
 @Service()
 export default class BookService {
-  private bookRepository!: MongoRepository<Book>;
+  private bookRepository!: BookRepository;
 
   constructor() {
-    this.bookRepository = getMongoRepository(Book, "mongodb");
+    this.bookRepository = getCustomRepository(BookRepository, "mongodb");
   }
+  findByName = async (name: string): Promise<Book[]> =>
+    await this.bookRepository.findByName(name);
 
   findById = async (_id: string): Promise<Book> => {
-    const book = await this.bookRepository.findOne({ _id: new ObjectID(_id) });
+    const book = await this.bookRepository.findOne({ _id: new ObjectId(_id) });
     if (!book) throw new Error(`The Book with id: ${_id} doesn't exists! 😢`);
     return book;
   };
@@ -40,10 +44,9 @@ export default class BookService {
   };
 
   delete = async (_id: string): Promise<boolean> => {
-    const persistedBook = await this.findById(_id);
-    const result = await this.bookRepository.deleteOne({
-      _id: persistedBook._id,
+    const result = await this.bookRepository.findOneAndDelete({
+      _id: new ObjectId(_id),
     });
-    return !!result;
+    return !!result.value;
   };
 }

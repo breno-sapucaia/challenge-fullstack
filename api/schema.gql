@@ -47,13 +47,14 @@ scalar DateTime
 
 type Mutation {
   createBook(createBookInput: CreateBookInput!): Book!
-  deleteBook(id: String!): Boolean!
+  deleteBook(_id: String!): Boolean!
   updateBook(_id: String!, updateBookInput: UpdateBookInput!): Boolean!
 }
 
 type Query {
   getBook(_id: String!): Book!
   getBooks: [Book!]
+  getByName(name: String!): [Book!]!
 }
 
 """Use this input to create an author"""
