@@ -12,5 +12,8 @@ export class UpdateBookInput {
   description?: string;
 
   @Field(() => UpdateAuthorInput, { nullable: true })
-  authors!: Author;
+  authors?: Author;
+
+  @Field(() => String, { nullable: true })
+  uri?: string;
 }

@@ -12,11 +12,11 @@ export abstract class BaseSchema {
   @ObjectIdColumn()
   _id!: ObjectID;
 
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   @CreateDateColumn()
   createAt!: Date;
 
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   @UpdateDateColumn()
   updatedAt!: Date;
 }

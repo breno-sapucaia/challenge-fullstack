@@ -5,26 +5,27 @@
 
 type Author implements BaseSchema {
   _id: ID
-  createAt: DateTime!
+  createAt: DateTime
   firstName: String!
   fullName: String!
   lastName: String!
-  updatedAt: DateTime!
+  updatedAt: DateTime
 }
 
 interface BaseSchema {
   _id: ID
-  createAt: DateTime!
-  updatedAt: DateTime!
+  createAt: DateTime
+  updatedAt: DateTime
 }
 
 type Book implements BaseSchema {
   _id: ID
   authors: Author
-  createAt: DateTime!
+  createAt: DateTime
   description: String!
+  imageUri: String!
   name: String!
-  updatedAt: DateTime!
+  updatedAt: DateTime
 }
 
 """Use this input to create an author"""
@@ -37,6 +38,7 @@ input CreateAuthorInput {
 input CreateBookInput {
   authors: CreateAuthorInput!
   description: String!
+  imageUri: String
   name: String!
 }
 
@@ -69,4 +71,5 @@ input UpdateBookInput {
   _id: ID!
   authors: UpdateAuthorInput
   description: String
+  uri: String
 }

@@ -20,4 +20,8 @@ export class Book extends BaseSchema {
     nullable: false,
   })
   description!: string;
+
+  @Field(() => String)
+  @Column({ nullable: true })
+  imageUri?: string;
 }
