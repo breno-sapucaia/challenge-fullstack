@@ -1,12 +1,16 @@
-import { ObjectId } from "mongodb";
 import { Field, ID, InterfaceType } from "type-graphql";
-import { CreateDateColumn, ObjectIdColumn, UpdateDateColumn } from "typeorm";
+import {
+  CreateDateColumn,
+  ObjectID,
+  ObjectIdColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 @InterfaceType()
 export abstract class BaseSchema {
-  @Field(() => ID)
+  @Field(() => ID, { nullable: true })
   @ObjectIdColumn()
-  _id!: ObjectId;
+  _id!: ObjectID;
 
   @Field(() => Date)
   @CreateDateColumn()

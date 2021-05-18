@@ -10,9 +10,9 @@ export class Book extends BaseSchema {
   @Column({ nullable: false })
   name!: string;
 
-  @Field(() => [Author], { nullable: true })
+  @Field(() => Author, { nullable: true })
   @Column((type) => Author)
-  authors!: Author[];
+  authors!: Author;
 
   @Field(() => String)
   @Column({

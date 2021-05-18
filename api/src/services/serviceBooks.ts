@@ -17,7 +17,11 @@ export default class BookService {
     await this.bookRepository.findByName(name);
 
   findById = async (_id: string): Promise<Book> => {
-    const book = await this.bookRepository.findOne({ _id: new ObjectId(_id) });
+    const book = await this.bookRepository.findOne({
+      where: {
+        _id,
+      },
+    });
     if (!book) throw new Error(`The Book with id: ${_id} doesn't exists! 😢`);
     return book;
   };

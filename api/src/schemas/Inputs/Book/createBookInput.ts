@@ -13,6 +13,6 @@ export class CreateBookInput implements Partial<Book> {
   @Length(30, 255)
   description!: string;
 
-  @Field(() => [CreateAuthorInput], { nullable: false })
-  authors!: Author[];
+  @Field((type) => CreateAuthorInput, { nullable: false })
+  authors!: Author;
 }

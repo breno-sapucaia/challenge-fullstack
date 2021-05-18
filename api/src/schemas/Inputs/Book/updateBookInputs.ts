@@ -1,21 +1,16 @@
 import { Field, ID, InputType } from "type-graphql";
+import { ObjectID } from "typeorm";
 import { Author } from "../../Author";
 import { UpdateAuthorInput } from "../Author/updateAuthorInput";
 
 @InputType({ description: "Use this input to update the book" })
 export class UpdateBookInput {
   @Field(() => ID)
-  _id!: string;
+  _id!: ObjectID;
 
   @Field(() => String, { nullable: true })
-  firstName!: string;
+  description?: string;
 
-  @Field(() => String, { nullable: true })
-  lastName!: string;
-
-  @Field(() => String, { nullable: true })
-  description!: string;
-
-  @Field(() => [UpdateAuthorInput], { nullable: true })
-  authors!: Author[];
+  @Field(() => UpdateAuthorInput, { nullable: true })
+  authors!: Author;
 }
