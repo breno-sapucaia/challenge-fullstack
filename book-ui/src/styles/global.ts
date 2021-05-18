@@ -11,15 +11,26 @@ const GlobalStyle = createGlobalStyle`
     }
 
     :root {
-        --background-color: "#FEFAF6";
-        --background-white: "#FFF"
-        --primary-text:"#54565A"
-        --secondary-text: "#FF6978"
-        
+        --background-color: #FFF6E5;
+        --background-white: #FFF;
+        --primary-text-500: #000;
+        --primary-text-200: #54565A;
+        --secondary-text-500: #FF6978;   
     }
 
-    h1,h2,h3,h4,h5,h6{
+    h1, h2, h3, h4, h5, h6{
         font-weight: 700;
+    }
+
+    input {
+        color: var(--primary-text);
+        border:0;
+        outline:0;
+        line-height:1.5px;
+        ::placeholder{
+            opacity:1;
+            color: var(--placeholder);
+        }
     }
 
     button{ 
@@ -38,11 +49,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const MainContainer = styled.main`
-  width: 100%;
-  height: 100vh;
   background-color: var(--background-color);
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+  padding-top: 3.125rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 export { GlobalStyle, MainContainer };
