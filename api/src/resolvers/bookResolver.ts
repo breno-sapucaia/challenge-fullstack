@@ -11,8 +11,11 @@ class BookResolver {
   constructor(private readonly bookService: BookService) {}
 
   @Query((returns) => [Book!])
-  async getByName(@Arg("name") name: string): Promise<Book[]> {
-    return await this.bookService.findByName(name);
+  async getByName(
+    @Arg("term") term: string,
+    @Arg("page", { nullable: true }) page?: number
+  ): Promise<Book[]> {
+    return await this.bookService.findByName(term, page);
   }
 
   @Query((returns) => [Book!], { nullable: true })

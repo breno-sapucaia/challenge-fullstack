@@ -12,7 +12,7 @@ export class Book extends BaseSchema {
 
   @Field(() => Author, { nullable: true })
   @Column((type) => Author)
-  authors!: Author;
+  author!: Author;
 
   @Field(() => String)
   @Column({

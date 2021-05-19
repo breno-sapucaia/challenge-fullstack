@@ -14,7 +14,7 @@ export class CreateBookInput implements Partial<Book> {
   description!: string;
 
   @Field((type) => CreateAuthorInput, { nullable: false })
-  authors!: Author;
+  author!: Author;
 
   @Field(() => String, { nullable: true })
   imageUri?: string;

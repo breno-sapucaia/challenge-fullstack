@@ -20,7 +20,7 @@ interface BaseSchema {
 
 type Book implements BaseSchema {
   _id: ID
-  authors: Author
+  author: Author
   createAt: DateTime
   description: String!
   imageUri: String!
@@ -28,7 +28,7 @@ type Book implements BaseSchema {
   updatedAt: DateTime
 }
 
-"""Use this input to create an author"""
+"""Use this input to create a new book"""
 input CreateAuthorInput {
   firstName: String!
   lastName: String!
@@ -36,7 +36,7 @@ input CreateAuthorInput {
 
 """Use this input to create a new book"""
 input CreateBookInput {
-  authors: CreateAuthorInput!
+  author: CreateAuthorInput!
   description: String!
   imageUri: String
   name: String!
@@ -56,12 +56,11 @@ type Mutation {
 type Query {
   getBook(_id: String!): Book!
   getBooks: [Book!]
-  getByName(name: String!): [Book!]!
+  getByName(page: Float, term: String!): [Book!]!
 }
 
-"""Use this input to create an author"""
+"""Use this input to create a new book"""
 input UpdateAuthorInput {
-  _id: ID!
   firstName: String
   lastName: String
 }
@@ -69,7 +68,7 @@ input UpdateAuthorInput {
 """Use this input to update the book"""
 input UpdateBookInput {
   _id: ID!
-  authors: UpdateAuthorInput
+  author: UpdateAuthorInput
   description: String
   uri: String
 }

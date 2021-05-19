@@ -14,8 +14,9 @@ const GlobalStyle = createGlobalStyle`
         --background-color: #FFF6E5;
         --background-white: #FFF;
         --primary-text-500: #000;
-        --primary-text-200: #54565A;
-        --secondary-text-500: #FF6978;   
+        --primary-text-200: rgba(49, 49, 49, 0.8);
+        --secondary-text-500: #FF6978;
+        
     }
 
     h1, h2, h3, h4, h5, h6{
@@ -45,16 +46,22 @@ const GlobalStyle = createGlobalStyle`
     ul {
         list-style: none;
     }
-    
+    body {
+        background-color: var(--background-color);
+    }
 `;
 
 const MainContainer = styled.main`
-  background-color: var(--background-color);
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  width: 375px;
+  margin: 0 auto;
   padding-top: 3.125rem;
   display: flex;
   flex-direction: column;
+  @media (max-width: 375px) {
+    width: initial;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 `;
 
 export { GlobalStyle, MainContainer };

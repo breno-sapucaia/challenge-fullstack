@@ -13,8 +13,8 @@ export default class BookService {
   constructor() {
     this.bookRepository = getCustomRepository(BookRepository, "mongodb");
   }
-  findByName = async (name: string): Promise<Book[]> =>
-    await this.bookRepository.findByName(name);
+  findByName = async (name: string, page?: number): Promise<Book[]> =>
+    await this.bookRepository.findByName(name, page);
 
   findById = async (_id: string): Promise<Book> => {
     const book = await this.bookRepository.findOne({

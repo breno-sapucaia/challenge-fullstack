@@ -1,12 +1,8 @@
-import { Field, ID, InputType } from "type-graphql";
-import { ObjectID } from "typeorm";
+import { Field, InputType } from "type-graphql";
 import { Author } from "../../Author";
 
-@InputType({ description: "Use this input to create an author" })
+@InputType({ description: "Use this input to create a new book" })
 export class UpdateAuthorInput implements Partial<Author> {
-  @Field(() => ID)
-  _id!: ObjectID;
-
   @Field((type) => String, { nullable: true })
   firstName?: string;
 

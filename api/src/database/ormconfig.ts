@@ -11,6 +11,7 @@ const mongoConfig: ConnectionOptions = {
   connectTimeoutMS: 3600000,
   socketTimeoutMS: 3600000,
   port: 9999,
+  poolSize: 5,
   host: "localhost",
   authSource: "admin",
   entities: ["./src/schemas/**/*.{ts,js}"],
