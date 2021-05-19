@@ -29,6 +29,7 @@ interface GetBookByNameVariables {
 
 type BookContext = {
   books: Book[] | undefined;
+  hasTerm: boolean;
   loading: boolean;
   handleSetTerm: (term: string) => void;
   handleNextPage: (page: number) => void;
@@ -46,45 +47,60 @@ const GET_BOOKS_BY_NAME = gql`
         fullName
       }
       description
+      imageUri
     }
   }
 `;
 
 function BookContextProvider({ children }: PropsWithChildren<{}>) {
-  const [term, setTerm] = useState("");
-  const [page, setPage] = useState(0);
-
+  const [search, setSearch] = useState({ page: 0, term: "" });
+  const [hasTerm, setHasTerm] = useState(false);
+  const [books, setBooks] = useState<Book[]>([]);
   const [getBooksByName, { loading, data }] = useLazyQuery<
     BooksData,
     GetBookByNameVariables
   >(GET_BOOKS_BY_NAME, {
     variables: {
-      term,
-      page,
+      term: search.term,
+      page: search.page,
     },
   });
 
-  const handleNextPage = (page: number) => {
-    setPage((previousPage) => previousPage + 1);
+  const handleNextPage = () => {
+    setSearch((prev) => {
+      return { page: prev.page + 1, term: prev.term };
+    });
   };
 
   const handleSetTerm = (term: string) => {
-    setTerm(term);
+    setSearch({ page: 0, term });
   };
 
   useEffect(() => {
     getBooksByName({
-      variables: {
-        term,
-        page,
-      },
+      variables: { ...search },
     });
-  }, [term, page, getBooksByName]);
+  }, [search, getBooksByName, search.page]);
+
+  useEffect(() => {
+    if (
+      search.term.length > 0 &&
+      data !== undefined &&
+      data.getByName.length > 0
+    ) {
+      setBooks([...data.getByName]);
+      setHasTerm(true);
+    } else if (data !== undefined) {
+      setBooks((prev) => [...prev, ...data.getByName]);
+      setHasTerm(false);
+    }
+  }, [data, data?.getByName, search.term.length]);
 
   return (
     <Provider
       value={{
-        books: data?.getByName,
+        books,
+        hasTerm,
         handleSetTerm,
         handleNextPage,
         loading,

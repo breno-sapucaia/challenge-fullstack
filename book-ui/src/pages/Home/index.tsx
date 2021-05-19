@@ -5,13 +5,15 @@ import { Title } from "../../components/Title";
 import { useBooks } from "../../hooks/useBooks";
 
 export function Home() {
-  const { handleNextPage } = useBooks();
+  const { handleNextPage, hasTerm } = useBooks();
   return (
     <>
       <SearchInput />
       <Title user="Mehmed AI Fatih" />
       <BookList />
-      <button onClick={() => handleNextPage(1)}> Load More</button>
+      {!hasTerm ? (
+        <button onClick={() => handleNextPage(1)}> Load More</button>
+      ) : null}
     </>
   );
 }

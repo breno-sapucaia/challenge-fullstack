@@ -7,7 +7,6 @@ export function BookList() {
   const { books } = useBooks();
   return (
     <BooksContainer>
-      {console.log(books)}
       {books === undefined ? (
         //change to skelleton
         <p>Fetching books...</p>
