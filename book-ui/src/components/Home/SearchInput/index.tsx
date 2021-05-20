@@ -1,10 +1,10 @@
 import { useDebouncedCallback } from "use-debounce/lib";
-import { ReactComponent as SearchIcon } from "../../assets/searchIcon.svg";
-import { useBooks } from "../../hooks/useBooks";
+import { ReactComponent as SearchIcon } from "../../../assets/searchIcon.svg";
+import { useSearchBooks } from "../../../contexts/useSearchBooks";
 import { Container, Input } from "./styled";
 
 export function SearchInput() {
-  const { handleSetTerm } = useBooks();
+  const { handleSetTerm } = useSearchBooks();
 
   const handleDebounceInput = useDebouncedCallback(
     (value: string) => handleSetTerm(value),

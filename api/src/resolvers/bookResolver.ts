@@ -36,7 +36,7 @@ class BookResolver {
     return await this.bookService.create(createBookInput);
   }
 
-  @Mutation((returns) => Boolean)
+  @Mutation((returns) => Book!)
   async updateBook(
     @Arg("_id") id: string,
     @Arg("updateBookInput", (type) => UpdateBookInput)

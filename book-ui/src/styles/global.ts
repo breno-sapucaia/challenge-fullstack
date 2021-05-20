@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 
     * {
         margin:0;
@@ -8,15 +8,35 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         -webkit-font-smoothing: antialiased;
         font-weight: 400;
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFF6E5;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover{
+            background: #FFF6E5;
+        }
+        ::-webkit-scrollbar-track{
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: inset 7px 10px 12px #FFFCF9;
+        }
     }
 
     :root {
-        --background-color: #FFF6E5;
+        --background-white-600: #FFF6E5;
         --background-white: #FFF;
+        --background-gray: #bfbebf;
+        --background-black: #000;
+        --background-color: #FFFCF9;
         --primary-text-500: #000;
+        --primary-text-500-gray: #bfbebf;
         --primary-text-200: rgba(49, 49, 49, 0.8);
         --secondary-text-500: #FF6978;
-        
+        --border-gray: rgba(151, 151, 151, 0.2);
     }
 
     h1, h2, h3, h4, h5, h6{
@@ -48,20 +68,6 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         background-color: var(--background-color);
+        overflow: hidden;
     }
 `;
-
-const MainContainer = styled.main`
-  width: 375px;
-  margin: 0 auto;
-  padding-top: 3.125rem;
-  display: flex;
-  flex-direction: column;
-  @media (max-width: 375px) {
-    width: initial;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-`;
-
-export { GlobalStyle, MainContainer };

@@ -1,17 +1,23 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client/core";
 import { ApolloProvider } from "@apollo/client/react";
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { BookContextProvider } from "./hooks/useBooks";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import { BookContextProvider } from "./contexts/useBook";
+import { BookSearchContextProvider } from "./contexts/useSearchBooks";
 import { Create } from "./pages/Create";
 import { Detail } from "./pages/Detail";
 import { Home } from "./pages/Home";
 import { FontFace } from "./styles/fonts";
-import { GlobalStyle, MainContainer } from "./styles/global";
+import { GlobalStyle } from "./styles/global";
 
 function App() {
   return (
-    <MainContainer>
+    <>
       <ApolloProvider
         client={
           new ApolloClient({
@@ -22,23 +28,26 @@ function App() {
       >
         <Router>
           <Switch>
-            <Route path="/" exact>
-              <BookContextProvider>
+            <Route path="/book" exact>
+              <BookSearchContextProvider>
                 <Home />
-              </BookContextProvider>
-            </Route>
-            <Route path="/book/:id" exact>
-              <Detail />
+              </BookSearchContextProvider>
             </Route>
             <Route path="/book/create" exact>
               <Create />
             </Route>
+            <Route path="/book/:_id" exact>
+              <BookContextProvider>
+                <Detail />
+              </BookContextProvider>
+            </Route>
+            <Redirect from="*" to="/book" />
           </Switch>
         </Router>
       </ApolloProvider>
       <GlobalStyle />
       <FontFace />
-    </MainContainer>
+    </>
   );
 }
 

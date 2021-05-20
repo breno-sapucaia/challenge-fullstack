@@ -1,19 +1,17 @@
 import React from "react";
-import { BookList } from "../../components/BookList";
-import { SearchInput } from "../../components/SearchInput";
-import { Title } from "../../components/Title";
-import { useBooks } from "../../hooks/useBooks";
+import { BookList } from "../../components/Home/BookList";
+import { BottomNavigation } from "../../components/Home/BottomNavigation";
+import { SearchInput } from "../../components/Home/SearchInput";
+import { Title } from "../../components/Home/Title";
+import { MainContainer } from "./styled";
 
 export function Home() {
-  const { handleNextPage, hasTerm } = useBooks();
   return (
-    <>
+    <MainContainer>
       <SearchInput />
       <Title user="Mehmed AI Fatih" />
       <BookList />
-      {!hasTerm ? (
-        <button onClick={() => handleNextPage(1)}> Load More</button>
-      ) : null}
-    </>
+      <BottomNavigation />
+    </MainContainer>
   );
 }

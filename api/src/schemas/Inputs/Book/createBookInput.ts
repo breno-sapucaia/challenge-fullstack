@@ -7,7 +7,10 @@ import { CreateAuthorInput } from "../Author/createAuthorInput";
 @InputType({ description: "Use this input to create a new book" })
 export class CreateBookInput implements Partial<Book> {
   @Field(() => String!)
-  name!: string;
+  title!: string;
+
+  @Field(() => String, { nullable: true })
+  subTitle?: string;
 
   @Field(() => String!)
   @Length(30, 255)

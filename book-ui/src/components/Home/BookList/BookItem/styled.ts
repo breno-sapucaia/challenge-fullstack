@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
 
   > img {
     border-radius: 0.5rem;
-    width: 100px;
-    height: 150px;
+    width: 100%;
     object-fit: contain;
   }
 

@@ -8,7 +8,11 @@ import { BaseSchema } from "./BaseSchema";
 export class Book extends BaseSchema {
   @Field(() => String)
   @Column({ nullable: false })
-  name!: string;
+  title!: string;
+
+  @Field(() => String, { nullable: true })
+  @Column({ nullable: true })
+  subTitle?: string;
 
   @Field(() => Author, { nullable: true })
   @Column((type) => Author)
@@ -16,7 +20,7 @@ export class Book extends BaseSchema {
 
   @Field(() => String)
   @Column({
-    length: 255,
+    length: 600,
     nullable: false,
   })
   description!: string;

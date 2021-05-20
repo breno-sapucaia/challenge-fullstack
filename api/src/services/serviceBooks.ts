@@ -13,13 +13,13 @@ export default class BookService {
   constructor() {
     this.bookRepository = getCustomRepository(BookRepository, "mongodb");
   }
-  findByName = async (name: string, page?: number): Promise<Book[]> =>
-    await this.bookRepository.findByName(name, page);
+  findByName = async (term: string, page?: number): Promise<Book[]> =>
+    await this.bookRepository.findByName(term, page);
 
   findById = async (_id: string): Promise<Book> => {
     const book = await this.bookRepository.findOne({
       where: {
-        _id,
+        _id: new ObjectId(_id),
       },
     });
     if (!book) throw new Error(`The Book with id: ${_id} doesn't exists! 😢`);
@@ -36,15 +36,18 @@ export default class BookService {
     _id: string,
     updateBookInput: UpdateBookInput
   ): Promise<Book> => {
-    const { lastErrorObject, value } =
-      await this.bookRepository.findOneAndUpdate({ _id }, updateBookInput, {
-        returnOriginal: false,
-      });
-    if (!lastErrorObject) return value as Book;
-    else {
-      console.log(lastErrorObject);
-      throw new Error(lastErrorObject);
+    const result = await this.findById(_id);
+    console.log(updateBookInput);
+    if (result) {
+      await this.bookRepository.updateOne(
+        {
+          _id: new ObjectId(_id),
+        },
+        { $set: updateBookInput }
+      );
     }
+
+    return await this.findById(_id);
   };
 
   delete = async (_id: string): Promise<boolean> => {

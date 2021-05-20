@@ -24,7 +24,8 @@ type Book implements BaseSchema {
   createAt: DateTime
   description: String!
   imageUri: String!
-  name: String!
+  subTitle: String
+  title: String!
   updatedAt: DateTime
 }
 
@@ -39,7 +40,8 @@ input CreateBookInput {
   author: CreateAuthorInput!
   description: String!
   imageUri: String
-  name: String!
+  subTitle: String
+  title: String!
 }
 
 """
@@ -50,7 +52,7 @@ scalar DateTime
 type Mutation {
   createBook(createBookInput: CreateBookInput!): Book!
   deleteBook(_id: String!): Boolean!
-  updateBook(_id: String!, updateBookInput: UpdateBookInput!): Boolean!
+  updateBook(_id: String!, updateBookInput: UpdateBookInput!): Book!
 }
 
 type Query {
@@ -67,8 +69,9 @@ input UpdateAuthorInput {
 
 """Use this input to update the book"""
 input UpdateBookInput {
-  _id: ID!
   author: UpdateAuthorInput
   description: String
-  uri: String
+  imageUri: String
+  subTitle: String
+  title: String
 }
