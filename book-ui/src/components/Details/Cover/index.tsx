@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Skeleton from "react-loading-skeleton";
 import { useGetOneBook } from "../../../contexts/useGetOneBook";
 import { CoverContainer, ImageContainer } from "./styled";
 
 export function CoverBook() {
   const { book } = useGetOneBook();
-  useEffect(() => {
-    console.log(book);
-  }, [book]);
+
   return (
     <>
       <CoverContainer>

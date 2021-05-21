@@ -86,4 +86,7 @@ export const GlobalStyle = createGlobalStyle`
         background-color: var(--background-color);
         overflow: hidden;
     }
+    .none {
+        display:none;
+    }
 `;

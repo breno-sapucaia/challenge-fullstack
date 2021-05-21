@@ -22,7 +22,7 @@ export function RichTextEditor({
   useEffect(() => {
     if (value) setValue(value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [value]);
   return (
     <EditorContainer>
       <EditorLabel>{label}</EditorLabel>

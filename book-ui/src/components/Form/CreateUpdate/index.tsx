@@ -108,9 +108,8 @@ export function FormCreateUpdate({ children }: PropsWithChildren<{}>) {
         ...value,
         description: getEditorHtml(),
       };
-      delete book._id;
 
-      console.log(book);
+      delete book._id;
       if (isAddMode) {
         createBook({
           variables: {
@@ -153,20 +152,7 @@ export function FormCreateUpdate({ children }: PropsWithChildren<{}>) {
         })
           .then((values) => {
             if (values.data) {
-              toast.success(
-                `📖 The book: ${values.data.updateBook._id} was Updated successfully, redirecting to details of it.`,
-                {
-                  position: "top-center",
-                  autoClose: 4500,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: false,
-                  progress: undefined,
-                  onClose: () =>
-                    history.push(`/book/${values.data?.updateBook._id}`),
-                }
-              );
+              history.push(`/book/${values.data?.updateBook._id}`);
             }
           })
           .catch((err) => {

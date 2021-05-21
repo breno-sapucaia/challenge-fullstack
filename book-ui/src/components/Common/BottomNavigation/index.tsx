@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ReactComponent as Add } from "../../../assets/add.svg";
 import { ReactComponent as Home } from "../../../assets/home.svg";
@@ -8,10 +7,6 @@ import { FixedNav, LinkContainer } from "./styled";
 
 export function BottomNavigation(props: { center?: boolean }) {
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
   return (
     <FixedNav $center={props.center}>
       <LinkContainer $customIsActive={pathname === "/book"} to="/book">

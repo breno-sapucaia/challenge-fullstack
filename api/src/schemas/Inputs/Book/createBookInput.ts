@@ -1,4 +1,3 @@
-import { Min } from "class-validator";
 import { Field, InputType } from "type-graphql";
 import { Author } from "../../Author";
 import { Book } from "../../Book";
@@ -13,7 +12,6 @@ export class CreateBookInput implements Partial<Book> {
   subTitle?: string;
 
   @Field(() => String!)
-  @Min(30)
   description!: string;
 
   @Field((type) => CreateAuthorInput, { nullable: false })
