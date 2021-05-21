@@ -33,6 +33,7 @@ But if the noia that exists in me greets the noia that exists in you, we know th
 In order to go futher I choose to work with graphql, I learned how use graphql with those 7 days and applied in the project.
 Since the deisgn is for mobile devices, nothing more fair than use graphql that walks side by side with mobile applications.
 
+time spend: [wakatime](https://wakatime.com/@BrenoSapucaiaSantos/projects/lzhbkfvqyp?start=2021-05-15&end=2021-05-21)
 ## Built With
 
 backend: 
