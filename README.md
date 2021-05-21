@@ -25,12 +25,13 @@
 </details>
 
 # About the Fullstack Challenge
-The challange was develop an Book Library designed in figma.
-I need to do some mandatory tasks like: form validation; create a new book; search by name ect...
+The challange was develop a Book Library designed in figma.
+I need to do some mandatory tasks like: form validation; create a new book; search by name...
 
 But if the noia that exists in me greets the noia that exists in you, we know that we do more than the mandatory.
 
-In order to go futher I choose to work with graphql, I learned how use graphql with those 7 days and applied in the project.
+In order to go further.
+I choose to work with graphql, I learned how use graphql with those 7 days and applied in the project.
 Since the deisgn is for mobile devices, nothing more fair than use graphql that walks side by side with mobile applications.
 
 time spend: [wakatime](https://wakatime.com/@BrenoSapucaiaSantos/projects/lzhbkfvqyp?start=2021-05-15&end=2021-05-21)
@@ -58,7 +59,7 @@ frontend:
  
 
 # Getting Started:
-in order to run the project you must have in your machine
+You must have in your machine to run the project those guys:
 
 ## Prerequisites
 - node@latest
@@ -70,7 +71,7 @@ in order to run the project you must have in your machine
 ## Installation and Running
 
 
-1. clone this repo in yout machine
+1. clone this repo in your machine
 ```sh
   git clone https://github.com/breno-sapucaia/challenge-fullstack.git
   cd challange-fullstack
@@ -85,7 +86,7 @@ cd api
 yarn
 yarn dev
 ```
-4. open another terminal in the root of the project run the follow commands to instal and run the develop enviroment for reactjs
+4. open another terminal in the root of the project and run the following commands:
 ```sh
 cd book-api
 yarn
