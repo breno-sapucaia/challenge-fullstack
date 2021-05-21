@@ -75,27 +75,23 @@ in order to run the project you must have in your machine
   git clone https://github.com/breno-sapucaia/challenge-fullstack.git
   cd challange-fullstack
 ```
-2. Craete folder mongodb in the root of the project.
-```sh
-mkdir mongodb
-```
-3. in the root run docker-compose with the flag -d 
+2. in the root run docker-compose with the flag -d 
 ```sh
 docker-compose up -d
 ```
-4. go to the api folder, install the depedenceies and run the dev enviroment for ts-node
+3. go to the api folder, install the depedenceies and run the dev enviroment for ts-node
 ```sh
 cd api
 yarn
 yarn dev
 ```
-5. open another terminal in the root of the project run the follow commands to instal and run the develop enviroment for reactjs
+4. open another terminal in the root of the project run the follow commands to instal and run the develop enviroment for reactjs
 ```sh
 cd book-api
 yarn
 yarn start
 ```
-6. once react server compile end access [localhost:3000](http://localhost:3000/)
+5. once react server compile end access [localhost:3000](http://localhost:3000/)
 
 # Contact
 Contact me via:
