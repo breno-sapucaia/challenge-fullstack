@@ -1,8 +1,9 @@
 <p align="center">
   <img src="https://github.com/breno-sapucaia/challenge-fullstack/blob/main/book-ui/public/logo192.png" />
 </p>
-<p align="center"><h1>Welcome</h1></p>
-This is my solution for the <a href="https://github.com/FotonTech/fullstack-challenge">Fullstack Challenge</a> provided by <a href="https://fotontech.io/">Foton</a>
+<h1 align="center">Welcome</h1>
+<p align="center">This is my solution for the <a href="https://github.com/FotonTech/fullstack-challenge">Fullstack Challenge</a> provided by <a href="https://fotontech.io/">Foton</a></p>
+
 
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
@@ -33,6 +34,7 @@ In order to go futher I choose to work with graphql, I learned how use graphql w
 Since the deisgn is for mobile devices, nothing more fair than use graphql that walks side by side with mobile applications.
 
 ## Built With
+
 backend: 
 - Typeorm 
 - TypeGraphlQL with Typeid (Injection Of Depedency)
@@ -52,17 +54,19 @@ frontend:
 - Formik
 - Yup
 - DraftJS
+ 
 
-## Getting Started:
+# Getting Started:
 in order to run the project you must have in your machine
 
-### Prerequisites
+## Prerequisites
 - node@latest
+- npm@latest
 - docker: 	19.03.0+
 - docker-compose specification: 3.8
 - yarn@latest (globaly installed)
 
-### Installation and Running
+## Installation and Running
 
 
 1. clone this repo in yout machine
