@@ -20,7 +20,7 @@ export class Book extends BaseSchema {
 
   @Field(() => String)
   @Column({
-    length: 600,
+    length: 1200,
     nullable: false,
   })
   description!: string;

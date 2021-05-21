@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
-import { useBook } from "../../../contexts/useBook";
+import { useGetOneBook } from "../../../contexts/useGetOneBook";
 import { CoverContainer, ImageContainer } from "./styled";
 
 export function CoverBook() {
-  const { book } = useBook();
+  const { book } = useGetOneBook();
   useEffect(() => {
     console.log(book);
   }, [book]);

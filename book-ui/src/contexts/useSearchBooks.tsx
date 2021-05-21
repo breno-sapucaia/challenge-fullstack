@@ -1,5 +1,4 @@
-import { gql } from "@apollo/client/core";
-import { useLazyQuery } from "@apollo/client/react";
+import { useLazyQuery, useQuery } from "@apollo/client/react";
 import React, {
   createContext,
   PropsWithChildren,
@@ -7,30 +6,20 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-export interface Book {
-  _id: string;
-  title: string;
-  imageUri: string;
-  author: {
-    fullName: string;
-  };
-  description: string;
-}
-
-interface BooksData {
-  getByName: Book[];
-}
-
-interface GetBookByNameVariables {
-  term: string;
-  page?: number;
-}
+import { CountBooks, COUNT_BOOK } from "../graphql/queries/countBooks";
+import {
+  BookByName,
+  BooksData,
+  GetBookByNameVariables,
+  GET_BOOKS_BY_NAME,
+} from "../graphql/queries/getBookByName";
 
 type BookContext = {
-  books: Book[] | undefined;
+  books: BookByName[] | undefined;
   loading: boolean;
+  limitReached: boolean;
   handleSetTerm: (term: string) => void;
   handleNextPage: (page: number) => void;
 };
@@ -38,24 +27,12 @@ type BookContext = {
 const bookSearchContext = createContext<BookContext | undefined>(undefined);
 const { Provider } = bookSearchContext;
 
-const GET_BOOKS_BY_NAME = gql`
-  query getBooksByName($term: String!, $page: Float!) {
-    getByName(term: $term, page: $page) {
-      _id
-      title
-      author {
-        fullName
-      }
-      description
-      imageUri
-    }
-  }
-`;
-
 function BookSearchContextProvider({ children }: PropsWithChildren<{}>) {
+  const { data: bookMax } = useQuery<CountBooks>(COUNT_BOOK);
+  const [limitReached, setLimitReached] = useState(false);
   const [page, setPage] = useState(0);
   const [term, setTerm] = useState("");
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<BookByName[]>([]);
   const [getBooksByName, { loading, data }] = useLazyQuery<
     BooksData,
     GetBookByNameVariables
@@ -64,20 +41,20 @@ function BookSearchContextProvider({ children }: PropsWithChildren<{}>) {
       term,
       page,
     },
+    fetchPolicy: "network-only",
   });
 
-  const handleNextPage = (page: number) => {
-    if (books.length % 9 === 0) setPage((prev) => prev + page);
-    else
-      toast.info("📚 No more books to load! 📚", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-      });
+  const canFetchNextPage = () => {
+    if (bookMax) return books.length < bookMax.countBooks;
+    return false;
+  };
+
+  const handleNextPage = (page: number = 1) => {
+    if (canFetchNextPage()) {
+      setPage((prev) => prev + page);
+    } else {
+      setLimitReached(!limitReached);
+    }
   };
 
   const handleSetTerm = (term: string) => {
@@ -106,6 +83,7 @@ function BookSearchContextProvider({ children }: PropsWithChildren<{}>) {
         handleSetTerm,
         handleNextPage,
         loading,
+        limitReached,
       }}
     >
       {children}

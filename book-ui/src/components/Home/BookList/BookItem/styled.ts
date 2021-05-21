@@ -9,6 +9,7 @@ const Container = styled.div`
     border-radius: 0.5rem;
     width: 100%;
     object-fit: contain;
+    min-height: 8.75rem;
   }
 
   > p.bookName {

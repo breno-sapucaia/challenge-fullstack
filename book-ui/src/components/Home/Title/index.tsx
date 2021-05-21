@@ -8,7 +8,7 @@ interface TitleProps {
 export function Title({ user }: TitleProps) {
   return (
     <StyledTitle>
-      H1, <strong>{user}</strong> 👋
+      Hi, <strong>{user}</strong> 👋
     </StyledTitle>
   );
 }

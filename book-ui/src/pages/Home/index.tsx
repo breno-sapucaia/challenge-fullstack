@@ -1,6 +1,6 @@
 import React from "react";
+import { BottomNavigation } from "../../components/Common/BottomNavigation";
 import { BookList } from "../../components/Home/BookList";
-import { BottomNavigation } from "../../components/Home/BottomNavigation";
 import { SearchInput } from "../../components/Home/SearchInput";
 import { Title } from "../../components/Home/Title";
 import { MainContainer } from "./styled";

@@ -13,6 +13,9 @@ export default class BookService {
   constructor() {
     this.bookRepository = getCustomRepository(BookRepository, "mongodb");
   }
+
+  count = async (): Promise<Number> => await this.bookRepository.count();
+
   findByName = async (term: string, page?: number): Promise<Book[]> =>
     await this.bookRepository.findByName(term, page);
 
@@ -37,7 +40,6 @@ export default class BookService {
     updateBookInput: UpdateBookInput
   ): Promise<Book> => {
     const result = await this.findById(_id);
-    console.log(updateBookInput);
     if (result) {
       await this.bookRepository.updateOne(
         {

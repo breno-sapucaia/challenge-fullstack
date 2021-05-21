@@ -5,7 +5,7 @@ import { BackButton } from "./styled";
 export function Back() {
   const history = useHistory();
   return (
-    <BackButton onClick={() => history.goBack()}>
+    <BackButton onClick={() => history.push("/book")}>
       <BackIcon />
     </BackButton>
   );

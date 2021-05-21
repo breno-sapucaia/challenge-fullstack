@@ -32,11 +32,16 @@ export const GlobalStyle = createGlobalStyle`
         --background-gray: #bfbebf;
         --background-black: #000;
         --background-color: #FFFCF9;
+
         --primary-text-500: #000;
         --primary-text-500-gray: #bfbebf;
         --primary-text-200: rgba(49, 49, 49, 0.8);
         --secondary-text-500: #FF6978;
+
         --border-gray: rgba(151, 151, 151, 0.2);
+
+        --shadow-input:  5px 5px 80px 0px #D4AD867E;
+;
     }
 
     h1, h2, h3, h4, h5, h6{
@@ -57,6 +62,17 @@ export const GlobalStyle = createGlobalStyle`
     button{ 
         cursor: pointer;
         outline: 0;
+        
+
+        border-radius: 0.625rem;
+        border: 0;
+
+        background-color: var(--secondary-text-500);
+        color: var(--background-white);
+
+        font-family: "sf-pro-display";
+        font-size: 1.25rem;
+        font-weight: 500;
     }
 
     a {

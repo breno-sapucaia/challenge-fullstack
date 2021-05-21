@@ -30,6 +30,11 @@ export const Container = styled.section`
       font-size: 0.875rem;
       line-height: 1.5rem;
       letter-spacing: 0.0125rem;
+      margin-bottom: 1.5625rem;
+      word-break: break-word;
+      :last-child {
+        margin-bottom: initial;
+      }
     }
   }
 

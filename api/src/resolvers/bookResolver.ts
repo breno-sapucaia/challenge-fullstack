@@ -1,4 +1,4 @@
-import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
 import { Service } from "typedi";
 import { Book } from "../schemas/Book";
 import { CreateBookInput } from "../schemas/Inputs/Book/createBookInput";
@@ -10,6 +10,10 @@ import BookService from "../services/serviceBooks";
 class BookResolver {
   constructor(private readonly bookService: BookService) {}
 
+  @Query((returns) => Int!)
+  async countBooks(): Promise<Number> {
+    return await this.bookService.count();
+  }
   @Query((returns) => [Book!])
   async getByName(
     @Arg("term") term: string,
@@ -33,6 +37,7 @@ class BookResolver {
     @Arg("createBookInput", (type) => CreateBookInput)
     createBookInput: CreateBookInput
   ): Promise<Book> {
+    console.log(createBookInput);
     return await this.bookService.create(createBookInput);
   }
 

@@ -7,9 +7,9 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import { BookContextProvider } from "./contexts/useBook";
+import { BookContextProvider } from "./contexts/useGetOneBook";
 import { BookSearchContextProvider } from "./contexts/useSearchBooks";
-import { Create } from "./pages/Create";
+import { CreateUpdate } from "./pages/CreateUpdate";
 import { Detail } from "./pages/Detail";
 import { Home } from "./pages/Home";
 import { FontFace } from "./styles/fonts";
@@ -34,7 +34,10 @@ function App() {
               </BookSearchContextProvider>
             </Route>
             <Route path="/book/create" exact>
-              <Create />
+              <CreateUpdate />
+            </Route>
+            <Route path="/book/:_id/update" exact>
+              <CreateUpdate />
             </Route>
             <Route path="/book/:_id" exact>
               <BookContextProvider>

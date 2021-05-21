@@ -53,6 +53,7 @@ const ImageContainer = styled.div`
     border-radius: 0.5rem;
     position: relative;
     margin-bottom: -2rem;
+    min-height: 13.875rem;
     max-width: 9.375rem;
     z-index: 2;
   }

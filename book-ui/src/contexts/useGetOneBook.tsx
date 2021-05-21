@@ -1,20 +1,12 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { createContext, PropsWithChildren, useContext } from "react";
 import { useParams } from "react-router";
-
-interface Book {
-  _id: string;
-  title: string;
-  subTitle: string;
-  imageUri: string;
-  author: {
-    fullName: string;
-  };
-  description: string;
-}
-interface GetBook {
-  getBook: Book;
-}
+import {
+  Book,
+  GetBook,
+  GetBookQueryParams,
+  GET_BOOK,
+} from "../graphql/queries/getBook";
 
 interface Context {
   book: Book | undefined;
@@ -24,25 +16,6 @@ interface Context {
 const bookContext = createContext<Context | undefined>(undefined);
 const { Provider } = bookContext;
 
-interface GetBookQueryParams {
-  _id: string;
-}
-
-const GET_BOOK = gql`
-  query getBook($_id: String!) {
-    getBook(_id: $_id) {
-      _id
-      title
-      subTitle
-      imageUri
-      author {
-        fullName
-      }
-      description
-    }
-  }
-`;
-
 const BookContextProvider = ({ children }: PropsWithChildren<{}>) => {
   const { _id } = useParams<{ _id: string }>();
 
@@ -50,6 +23,7 @@ const BookContextProvider = ({ children }: PropsWithChildren<{}>) => {
     variables: {
       _id,
     },
+    fetchPolicy: "cache-and-network",
   });
 
   return (
@@ -64,11 +38,11 @@ const BookContextProvider = ({ children }: PropsWithChildren<{}>) => {
   );
 };
 
-const useBook = () => {
+const useGetOneBook = () => {
   const context = useContext(bookContext);
   if (context === undefined)
     throw new Error(`useBook must be within a BookContextProvider.`);
   return context;
 };
 
-export { BookContextProvider, useBook };
+export { BookContextProvider, useGetOneBook };
