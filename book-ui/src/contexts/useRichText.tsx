@@ -54,10 +54,11 @@ export const RichTextProvider = ({ children }: PropsWithChildren<{}>) => {
   ) => {
     const length =
       editorState.getCurrentContent().getPlainText().length + chars.length;
-    const reachLimit = length >= 600;
+    //gap of 100 in order to count in the database the generated html tags.
+    const reachLimit = length >= 1100;
     const isHandled = reachLimit ? "handled" : "not-handled";
     if (isHandled === "handled") {
-      toast.error("you reach the limit of 600 caracteres in description", {
+      toast.error("you reach the limit of 1200 caracteres in description", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,

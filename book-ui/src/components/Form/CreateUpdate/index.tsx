@@ -100,6 +100,10 @@ export function FormCreateUpdate({ children }: PropsWithChildren<{}>) {
         errors.description =
           "The description must have at least thirty caracteres";
       }
+      if (descriptionLength > 1100) {
+        errors.description =
+          "The description must have less than one thousand and one hundred caracteres";
+      }
       return errors;
     },
     validationSchema: schema,
@@ -121,7 +125,7 @@ export function FormCreateUpdate({ children }: PropsWithChildren<{}>) {
               `📖 The book: ${values.data?.createBook.title} was Created successfully, redirecting to home`,
               {
                 position: "top-center",
-                autoClose: 4500,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -134,7 +138,7 @@ export function FormCreateUpdate({ children }: PropsWithChildren<{}>) {
           .catch((err) => {
             if (err)
               toast.error(
-                `💔 Something went wrong, please notify @sapu_io on twitter`
+                `💔 Something went wrong, please create an issue on my github!`
               );
           });
       } else {
