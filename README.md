@@ -39,7 +39,7 @@ time spend: [wakatime](https://wakatime.com/@BrenoSapucaiaSantos/projects/lzhbkf
 
 backend: 
 - Typeorm 
-- TypeGraphlQL with Typeid (Injection Of Depedency)
+- TypeGraphlQL with Typeid (Depedency Injection)
 - Express
 - Apollo Server Express
 - Graphql
